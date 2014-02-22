@@ -3,6 +3,8 @@
 import argparse
 import random
 import struct
+import codecs
+#import textwrap
 
 
 #//**********************************************************************
@@ -12,8 +14,10 @@ import struct
 #//**********************************************************************
 
 PROGRAM_NAME = "quote"
-VERSION = "3.1.0"
+VERSION = "3.2.0"
 COPYRIGHT_MESSAGE = "copyright (c) 2013 (1990), Rick Gutleber (rickg@his.com)"
+
+lineLength = 80
 
 
 #//**********************************************************************
@@ -27,17 +31,19 @@ def main( ):
 
     parser.add_argument( 'quoteFile', default='quote.txt' )
     parser.add_argument( 'indexFile', default='quote.idx' )
-    parser.add_argument( 'quote_choice', nargs='?', type=int, default=-1 )
+    parser.add_argument( 'quote_choice', nargs='?', type=int, default=0 )
+    parser.add_argument( 'quotes_to_print', nargs='?', type=int, default=1 )
 
     args = parser.parse_args( )
 
     quoteFile = args.quoteFile
     indexFile = args.indexFile
-    quoteChoice = args.quote_choice
+    quoteChoice = args.quote_choice - 1   # first quote is #1, not #0
+    quotesToPrint = args.quotes_to_print
 
     itemSize = struct.calcsize( 'i' )
 
-    print( "_" * 80 )
+    print( "_" * lineLength )
     print( )
 
     with open( indexFile, "rb" ) as infile:
@@ -50,18 +56,23 @@ def main( ):
 
         offset = struct.unpack( 'i', infile.read( itemSize ) )[ 0 ]
 
+#    with codecs.open( quoteFile, 'rU', 'ascii', 'replace' ) as infile:
     with open( quoteFile, "r" ) as infile:
         infile.seek( offset )
 
-        for line in infile:
-            if line == "%\n":
-                break
+        quote = ''
 
-            print( line, end='' )
+        for i in range( 0, quotesToPrint ):
+            for line in infile:
+                if line == "%\n":
+                    break
 
-    print( )
-    print( "_" * 80 )
-    print( quoteChoice )
+                print( line, end='' )
+
+            print( )
+            print( "_" * lineLength )
+            print( quoteChoice + i + 1 )
+            print( )
 
 
 #//**********************************************************************
