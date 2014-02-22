@@ -14,7 +14,7 @@ import sys
 #//**********************************************************************
 
 PROGRAM_NAME = "qindex"
-VERSION = "3.0.0"
+VERSION = "3.0.1"
 COPYRIGHT_MESSAGE = "copyright (c) 2013 (1990), Rick Gutleber (rickg@his.com)"
 
 
@@ -65,7 +65,7 @@ def main( ):
 
     outputFile.close( )
 
-    print( quoteCount, end='\r', file=sys.stderr )
+    print( quoteCount - 1, end='\r', file=sys.stderr )
 
 
 #//**********************************************************************
