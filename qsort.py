@@ -3,6 +3,7 @@
 import argparse
 import codecs
 import random
+import string
 import struct
 import sys
 
@@ -14,7 +15,7 @@ import sys
 #//**********************************************************************
 
 PROGRAM_NAME = "qsort"
-VERSION = "3.0.alpha1"
+VERSION = "3.0.0"
 COPYRIGHT_MESSAGE = "copyright (c) 2014 (1999), Rick Gutleber (rickg@his.com)"
 
 lineLength = 80
@@ -27,14 +28,15 @@ lineLength = 80
 #//******************************************************************************
 
 def generateSortKey( s ):
-    # Ignore leading and trailing spaces
-    s = s.strip( )
-    # All space types are equivalent
-    s = ' '.join( s.split( ) )
-    # case insentsitive
-    s = s.lower( )
+    result = s.strip( )
+    result = ' '.join( result.split( ) )
 
-    return s
+    for char in string.punctuation:
+        result = result.replace( char, '' )
+
+    result = result.lower( )
+
+    return result
 
 
 #//**********************************************************************
@@ -62,22 +64,18 @@ def main( ):
             quoteCount += 1
             quoteList.append( quote )
 
-            if quoteCount % 400 == 0:
+            if quoteCount % 100 == 0:
                 print( quoteCount, end='\r', file=sys.stderr )
 
             quote = ''
         else:
-            quote += line
+            quote += line.rstrip( ) + '\n'
 
-    quoteCount = 1
-
-    print( file=sys.stderr )
+    print( quoteCount, file=sys.stderr )
 
     for quote in sorted( quoteList, key=generateSortKey ):
-        #print( quoteCount, file=sys.stderr )
         print( quote, end='' )
         print( '%' )
-        quoteCount += 1
 
 
 #//**********************************************************************
