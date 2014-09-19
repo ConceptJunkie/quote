@@ -1,16 +1,19 @@
-This is a collection of quotes I have been curating since 1989.
+This is quote database I've been curating since 1989.
 
-Everything in this file is in the public domain to the best of my knowledge,
-and the contents have been edited to my personal tastes.  I have tried to 
-eliminate anything really offensive and would consider the contents generally
-SFW.
+Everything in here is, to my best knowledge, in the public domain.
 
-The file is strictly ASCII and consists of quotes formatted to fit in 80
-columns separated by '%' on a line by itself.
+It has been edited to suit my tastes and interests, and I have made a serious
+effort to keep it family-friendly, although I can make no guarantees, given
+that there are over 140,000 quotes in here.
 
-There are still a lot of duplicates, a lot of poorly formatted quotes and 
-other weird things.  I perform a little bit of clean-up every once in a
-while, and add stuff when I find something interesting.  
+There are also a lot of duplicates, and I have been making an effort to
+eliminate those, but have not yet attempted to automate that process.
+
+The file format is very simple and similar to 'fortune'.  The quotes are ASCII
+text, wrapped to fit in 80 columns and each quote is separated by a single
+percent sign on a line.  Python code to index and display quotes is included.
+
+Donations of more material are welcome.
 
 Rick Gutleber
 rickg@his.com
