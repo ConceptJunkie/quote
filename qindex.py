@@ -14,8 +14,8 @@ import sys
 #//**********************************************************************
 
 PROGRAM_NAME = "qindex"
-VERSION = "3.0.1"
-COPYRIGHT_MESSAGE = "copyright (c) 2013 (1990), Rick Gutleber (rickg@his.com)"
+VERSION = "3.0.2"
+COPYRIGHT_MESSAGE = "copyright (c) 2025 (1990), Rick Gutleber (rickg@his.com)"
 
 
 #//**********************************************************************
@@ -50,7 +50,7 @@ def main( ):
     outputFile.write( struct.pack( 'i', quoteCount ) )  # the final index count will go here when we are finished
     outputFile.write( struct.pack( 'i', offset ) )      # the first quote
 
-    for line in codecs.open( quoteFile, 'rU', 'ascii', 'replace' ):
+    for line in codecs.open( quoteFile, 'r', 'ascii', 'replace' ):
         offset += len( line )
 
         if line == '%\r\n':
